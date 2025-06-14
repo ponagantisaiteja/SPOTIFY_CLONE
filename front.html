@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome | Spotify Clone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+ <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    background: linear-gradient(135deg, #1db954, #191414);
+    font-family: 'Varela Round', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    color: white;
+  }
+
+  .background-scatter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .background-scatter img {
+    position: absolute;
+    opacity: 0.1;
+    filter: grayscale(40%);
+    transition: transform 0.5s ease;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 255, 120, 0.3);
+    text-align: center;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .container:hover {
+    box-shadow: 0 0 60px rgba(0, 255, 120, 0.6);
+    transform: scale(1.02);
+    backdrop-filter: blur(4px);
+  }
+
+  .container h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+    transition: color 0.3s ease;
+  }
+
+  .container h1:hover {
+    color: #1db954;
+    text-shadow: 0 0 15px #1db954;
+  }
+
+  .container p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #e0e0e0;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .container p:hover {
+    color: #ffffff;
+    transform: scale(1.02);
+  }
+
+  .container button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #1db954;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(29, 185, 84, 0.4);
+  }
+
+  .container button:hover {
+    background-color: #21e065;
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(29, 185, 84, 0.7), 0 0 40px rgba(29, 185, 84, 0.5);
+  }
+</style>
+
+</head>
+<body>
+
+  <!-- Random scattered background images -->
+  <div class="background-scatter" id="scatteredImages"></div>
+
+  <!-- Welcome Box -->
+  <div class="container">
+    <h1>🎙️Welcome to Spotify Clone🎶️</h1>
+    <p>Enjoy your favorite songs with a modern interface</p>
+    <p>🎶 "Every heartbeat is a drum, every tear a silent note — music is the echo of what words can’t say."</p>
+    <button onclick="location.href='index.html'">Get Started</button>
+  </div>
+
+  <!-- JavaScript to randomize image positions -->
+  <script>
+    const imageCount = 21;
+    const scatteredContainer = document.getElementById('scatteredImages');
+
+    for (let i = 1; i <= imageCount; i++) {
+      const img = document.createElement('img');
+      img.src = `covers/${i}.jpg`;
+      img.alt = `Cover ${i}`;
+
+      // Random positions and size
+      const top = Math.random() * 100;
+      const left = Math.random() * 100;
+      const size = 60 + Math.random() * 80; // 60px to 140px
+
+      img.style.top = `${top}%`;
+      img.style.left = `${left}%`;
+      img.style.width = `${size}px`;
+      img.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 20 - 10}deg)`;
+
+      scatteredContainer.appendChild(img);
+    }
+  </script>
+
+</body>
+</html>
